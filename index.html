@@ -229,6 +229,632 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/08/28/SSH小项目整合的简单记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/28/SSH小项目整合的简单记录/" itemprop="url">SSH小项目整合的简单记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-28T14:08:00+08:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="第一步、导入-sprint4、struts2-和-hibernate4-的-jar-包"><a href="#第一步、导入-sprint4、struts2-和-hibernate4-的-jar-包" class="headerlink" title="第一步、导入 sprint4、struts2 和 hibernate4 的 jar 包"></a>第一步、导入 sprint4、struts2 和 hibernate4 的 jar 包</h2><h3 id="struts2-的-jar-包"><a href="#struts2-的-jar-包" class="headerlink" title="struts2 的 jar 包"></a>struts2 的 jar 包</h3><p>commons-fileupload-1.3.3.jar<br>commons-io-2.5.jar<br>commons-lang3-3.6.jar<br>freemarker-2.3.26-incubating.jar<br>javassist-3.20.0-GA.jar<br>log4j-api-2.10.0.jar<br>ognl-3.1.15.jar<br>struts2-core-2.5.17.jar<br>struts2-spring-plugin-2.5.17.jar（和 spring4 整合使用）</p>
+<h3 id="hibernate5-的-jar-包"><a href="#hibernate5-的-jar-包" class="headerlink" title="hibernate5 的 jar 包"></a>hibernate5 的 jar 包</h3><p>antlr-2.7.7.jar<br>dom4j-1.6.1.jar<br>geronimo-jta_1.1_spec-1.1.1.jar<br>hibernate-commons-annotations-5.0.1.Final.jar<br>hibernate-core-5.0.7.Final.jar<br>hibernate-jpa-2.1-api-1.0.0.Final.jar<br>jandex-2.0.0.Final.jar<br>javassist-3.18.1-GA.jar<br>jboss-logging-3.3.0.Final.jar</p>
+<h3 id="spring4-的-jar-包"><a href="#spring4-的-jar-包" class="headerlink" title="spring4 的 jar 包"></a>spring4 的 jar 包</h3><p>spring-beans-4.0.0.RELEASE.jar<br>spring-context-4.0.0.RELEASE.jar<br>spring-core-4.0.0.RELEASE.jar<br>spring-expression-4.0.0.RELEASE.jar<br>spring-jdbc-4.0.0.RELEASE.jar<br>spring-tx-4.0.0.RELEASE.jar<br>spring-web-4.0.0.RELEASE.jar</p>
+<h2 id="第二步、配置-web-xml-配置文件"><a href="#第二步、配置-web-xml-配置文件" class="headerlink" title="第二步、配置 web.xml 配置文件"></a>第二步、配置 web.xml 配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置struts2的过滤器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 设置spring的配置文件的位置--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- 设置spring4的监听器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="第三步、配置-spring-的-struts2-的配置文件"><a href="#第三步、配置-spring-的-struts2-的配置文件" class="headerlink" title="第三步、配置 spring 的 struts2 的配置文件"></a>第三步、配置 spring 的 struts2 的配置文件</h2><h3 id="spring-配置文件-applicationContext-xml"><a href="#spring-配置文件-applicationContext-xml" class="headerlink" title="spring 配置文件 applicationContext.xml"></a>spring 配置文件 applicationContext.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 定义数据源，这里使用的jdbc。也可以使用c3p0等连接池 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql:///blog"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"1234"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 配置hibernate5 的 sessionFactory，交由spring来管理。不用在程序里自己new --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate4.LocalSessionFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"dataSource"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置hibernate相关属性 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernateProperties"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.dialect"</span>&gt;</span>org.hibernate.dialect.MySQLDialect<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.format_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置关联关系映射文件 的方式之一 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappingResources"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com/tzblog/bean/Album.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com/tzblog/bean/Article.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com/tzblog/bean/Critique.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com/tzblog/bean/Me.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com/tzblog/bean/Photo.hbm.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 配置事务管理器 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate4.HibernateTransactionManager"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- struts2 的 Action 交由 spring来管理，在struts.xml中的action的class里填写bean id --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"IndexAction"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.action.IndexAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"articleDAO"</span> <span class="attr">ref</span>=<span class="string">"articleDAO"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"critiqueDAO"</span> <span class="attr">ref</span>=<span class="string">"critiqueDAO"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"AlbumAction"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.action.AlbumAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"albumService"</span> <span class="attr">ref</span>=<span class="string">"albumService"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"ArticleAction"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.action.ArticleAction"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"MeAction"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.action.MeAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"meService"</span> <span class="attr">ref</span>=<span class="string">"meService"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"CritiqueAction"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.action.CritiqueAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"critiqueService"</span> <span class="attr">ref</span>=<span class="string">"critiqueService"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Service --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"albumService"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.service.AlbumService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"meService"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.service.MeService"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- meService要用的对象，下面的一样 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"meDAO"</span> <span class="attr">ref</span>=<span class="string">"meDAO"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"critiqueService"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.service.CritiqueService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- DAO --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"albumDAO"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.dao.AlbumDAO"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"articleDAO"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.dao.ArticleDAO"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"critiqueDAO"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.dao.CritiqueDAO"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"meDAO"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.dao.MeDAO"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"photoDAO"</span> <span class="attr">class</span>=<span class="string">"com.tzblog.dao.PhotoDAO"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="struts2-的配置文件-struts-xml"><a href="#struts2-的配置文件-struts-xml" class="headerlink" title="struts2 的配置文件 struts.xml"></a>struts2 的配置文件 struts.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启开发模式，在不使用spring的时候可以自动热部署--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- strict-method-invocation="false" 的作用是允许使用通配符 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"article"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">strict-method</span>=<span class="string">invocation</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"article_*"</span> <span class="attr">class</span>=<span class="string">"ArticleAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/WEB-INF/jsp/article.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"detail"</span>&gt;</span>/WEB-INF/jsp/article_detail.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"IndexAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/WEB-INF/jsp/index.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"about"</span> <span class="attr">class</span>=<span class="string">"MeAction"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/WEB-INF/jsp/aboutMe.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"album_*"</span> <span class="attr">class</span>=<span class="string">"AlbumAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/WEB-INF/jsp/album.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"input"</span>&gt;</span>/WEB-INF/jsp/album_detail.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"critique_*"</span> <span class="attr">class</span>=<span class="string">"CritiqueAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span>&gt;</span>/WEB-INF/jsp/critique.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"input"</span> <span class="attr">type</span>=<span class="string">"redirectAction"</span>&gt;</span>critique<span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="hibernate-的配置文件"><a href="#hibernate-的配置文件" class="headerlink" title="hibernate 的配置文件"></a>hibernate 的配置文件</h3><p>因为已经交由 spring 来管理 hibernate，所有不再需要 hibernate.cfg.xml 文件。但是还是需要 hibernate 关系映射文件。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/06/30/微软官方实例RazorPagesMovie在asp-net-core-2-1版本下的实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/30/微软官方实例RazorPagesMovie在asp-net-core-2-1版本下的实战/" itemprop="url">微软官方实例RazorPagesMovie在asp.net core 2.1版本下的实战</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T22:07:00+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="微软官方实例-RazorPagesMovie-在-asp-net-core-2-1-版本下的实战"><a href="#微软官方实例-RazorPagesMovie-在-asp-net-core-2-1-版本下的实战" class="headerlink" title="微软官方实例 RazorPagesMovie 在 asp.net core 2.1 版本下的实战"></a>微软官方实例 RazorPagesMovie 在 asp.net core 2.1 版本下的实战</h2><p>友情提示：</p>
+<pre><code>操作系统： MacOS 10.13.5
+dotnet core： version 2.1.300
+</code></pre><p>1、运行 dotnet 命令创建RazorPagesMovie项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet new webapp -o RazorPagesMovie</span><br></pre></td></tr></table></figure></p>
+<p>2、进入 RazorPagesMovie 目录，运行项目。然后，在浏览器中访问 localhost:5000 来查看项目运行情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd RazorPagesMovie</span><br><span class="line">dotnet run</span><br></pre></td></tr></table></figure></p>
+<p>当出现<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Using launch settings <span class="keyword">from</span> /Users/zhm/OneDrive/CodeStudy/dotnetcore/RazorPagesMovie/Properties/launchSettings.json...</span><br><span class="line">: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[<span class="number">0</span>]</span><br><span class="line">      User profile <span class="keyword">is</span> available. Using <span class="string">'/Users/zhm/.aspnet/DataProtection-Keys'</span> <span class="keyword">as</span> key repository; keys will not be encrypted at rest.</span><br><span class="line">Hosting environment: Development</span><br><span class="line">Content root path: /Users/zhm/OneDrive/CodeStudy/dotnetcore/RazorPagesMovie</span><br><span class="line">Now listening <span class="keyword">on</span>: https:<span class="comment">//localhost:5001</span></span><br><span class="line">Now listening <span class="keyword">on</span>: http:<span class="comment">//localhost:5000</span></span><br><span class="line">Application started. Press Ctrl+C to shut down.</span><br></pre></td></tr></table></figure></p>
+<p>的时候，就可在浏览器里浏览项目了</p>
+<p>3、在项目目录下新建一个Models目录，并进入目录<br>  a、创建实体类文件Movie.cs，内容如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RazorPagesMovie.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Movie</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Title &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> DateTime ReleaseDate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Genre &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">decimal</span> Price &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>b、创建数据上下文文件MovieContext.cs，内容如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RazorPagesMovie.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MovieContext</span> : <span class="title">DbContext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MovieContext</span>(<span class="params">DbContextOptions&lt;MovieContext&gt; options</span>)</span></span><br><span class="line"><span class="function">                : <span class="title">base</span>(<span class="params">options</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> DbSet&lt;Movie&gt; Movie &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>c、打开appsetting.json文件，然后在文件中添加数据库连接字符串<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"Logging"</span>: &#123;</span><br><span class="line">    <span class="attr">"IncludeScopes"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"LogLevel"</span>: &#123;</span><br><span class="line">      <span class="attr">"Default"</span>: <span class="string">"Warning"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"ConnectionStrings"</span>: &#123;</span><br><span class="line">    <span class="attr">"MovieContext"</span>: <span class="string">"Data Source=MvcMovie.db"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、在Startup.cs文件中，注册数据库上下文<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// requires </span></span><br><span class="line">    <span class="comment">// using RazorPagesMovie.Models;</span></span><br><span class="line">    <span class="comment">// using Microsoft.EntityFrameworkCore;</span></span><br><span class="line"></span><br><span class="line">    services.AddDbContext&lt;MovieContext&gt;(options =&gt; </span><br><span class="line">      options.UseSqlite(Configuration.GetConnectionString(<span class="string">"MovieContext"</span>)));</span><br><span class="line">    services.AddMvc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>5、安装用于进行迁移的 Entity Framework Core NuGet 包<br>  打开 RazorPagesMovie.csproj,在里面新建一个 <itemgroup>节点，在其中添加Microsoft.EntityFrameworkCore.Tools.DotNet工具的引用<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ItemGroup&gt;</span><br><span class="line">&lt;DotNetCliToolReference Include=<span class="string">"Microsoft.VisualStudio.Web.CodeGeneration.Tools"</span> Version=<span class="string">"2.0.4"</span> /&gt;</span><br><span class="line">&lt;/ItemGroup&gt;</span><br></pre></td></tr></table></figure></itemgroup></p>
+<p>6、添加基架工具并执行初始迁移<br>  首先，运行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dotnet add package Microsoft.AspNetCore.Razor.Language -v 2.1.0</span><br><span class="line">dotnet add package Microsoft.EntityFrameworkCore.Sqlite -v 2.1.0</span><br><span class="line">dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet --version 2.1.0-preview1-final</span><br><span class="line">dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 2.1.0</span><br></pre></td></tr></table></figure></p>
+<p>来添加package</p>
+<p>然后，运行如下命令，来进行初始迁移：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet restore</span><br><span class="line">dotnet ef migrations <span class="keyword">add</span> InitialCreate</span><br><span class="line">dotnet ef database update</span><br></pre></td></tr></table></figure></p>
+<p>最终，运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure></p>
+<p>来运行项目，并在浏览器中使用 localhost:5000/movies 来访问。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/06/10/对Integer类中的私有IntegerCache缓存类的一点记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/10/对Integer类中的私有IntegerCache缓存类的一点记录/" itemprop="url">对Integer类中的私有IntegerCache缓存类的一点记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-10T10:53:00+08:00">
+                2018-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>## 对Integer类中的私有IntegerCache缓存类的一点记录
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Integer类有内部缓存，存贮着-128 到 127。</span></span><br><span class="line"><span class="comment">// 所以，每个使用这些数字的变量都指向同一个缓存数据</span></span><br><span class="line"><span class="comment">// 因此可以直接使用 == 来比较是否相等</span></span><br><span class="line">Integer a = <span class="number">88</span>;</span><br><span class="line">Integer b = <span class="number">88</span>;</span><br><span class="line">System.out.println(a == b);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面这些不在Integer缓存类里的数字，在每次赋值的时候都会新建一个对象存放在不同的地址</span></span><br><span class="line"><span class="comment">// 所以，它们不能使用 == 来判断是否相等，而只能使用equals方法来比较</span></span><br><span class="line">Integer d = <span class="number">800</span>;</span><br><span class="line">Integer c = <span class="number">800</span>;</span><br><span class="line">System.out.println(d == c);</span><br><span class="line">System.out.println(d.equals(c));</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/06/09/Apache-commons-StringUtils-在运行时出现NoClassDefError错误的解决方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/09/Apache-commons-StringUtils-在运行时出现NoClassDefError错误的解决方法/" itemprop="url">Apache commons StringUtils 在运行时出现NoClassDefError错误的解决方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-09T09:20:00+08:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在用tomcat运行WEB项目，并且使用了StringUtils包的时候，会出现<br>java.lang.NoClassDefFoundError: org/apache/commons/lang3/StringUtils<br>的错误</p>
+<p>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">首先，去tomcat的webapp目录下，查看有没有我们引入的jar包，如果未发现，执行如下操作 </span><br><span class="line">1、打开项目属性(Properties)</span><br><span class="line">2、在左侧选择 deployment assembly</span><br><span class="line">3、点击Add按钮</span><br><span class="line">4、在打开的新界面中选择 Java Build Entries,点击 next，并选择出现的 jar 包，然后点击finish</span><br><span class="line">5、返回上一个界面后点击 Apply and Close</span><br><span class="line">这时重新运行项目就可以了。</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/05/03/对java位运算之异或运算的一点记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/对java位运算之异或运算的一点记录/" itemprop="url">对java位运算之异或运算的一点记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-03T21:20:00+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先，异或运算是，每个位上的数不同为1，相同为0。</p>
+<p>其次，对两个数值变量的值进行三次异或运算就等于是交换了两个变量的值。</p>
+<p>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">a = a ^ b;</span><br><span class="line">b = b ^ a;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></p>
+<p>之后的结果是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进行位异或运算</span><br><span class="line">a: <span class="number">10</span></span><br><span class="line">b: <span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/04/25/记录一下显示Map-String-ArrayList-String-中的ArrayList里的数据的操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -388,7 +1014,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
