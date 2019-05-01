@@ -5,11 +5,11 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://zhiming.space/"/>
+  <link rel="canonical" href="http://zhiming.space/">
 
 
 
@@ -150,7 +150,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Zhiming's blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -180,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -190,7 +190,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -229,11 +229,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhiming.space/2019/05/01/Windows10-下-github-ssh-访问出现-Permission-denied（publickey）错误的解决方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Zhiming">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhiming's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/01/Windows10-下-github-ssh-访问出现-Permission-denied（publickey）错误的解决方法/" itemprop="url">Windows10 下 github ssh 访问出现 Permission denied（publickey）错误的解决方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-01T12:37:54+08:00">
+                2019-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>错误信息：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:ediwang/envsetup.git</span><br><span class="line">Cloning into <span class="string">'envsetup'</span>...</span><br><span class="line">git@github.com: Permission denied (publickey).</span><br><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方法：</p>
+<ul>
+<li><p>打开 services.msc , 找到 OpenSSH Authentication Agent 服   务，然后启用它。</p>
+</li>
+<li><p>进入 .ssh 目录</p>
+</li>
+<li><p>执行 ssh-agent -s</p>
+</li>
+<li><p>执行 ssh-add id_rsa (id_rsa 要换成自己的)</p>
+</li>
+<li><p>执行 <code>ssh -T git@github.com</code>,如果出现：<br><code>Hi molisiye! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>    就说明可以通过 ssh 访问 github 了</p>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhiming.space/2018/08/28/SSH小项目整合的简单记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -359,7 +497,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -434,11 +572,11 @@ dotnet core： version 2.1.300
 <p>当出现<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Using launch settings <span class="keyword">from</span> /Users/zhm/OneDrive/CodeStudy/dotnetcore/RazorPagesMovie/Properties/launchSettings.json...</span><br><span class="line">: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[<span class="number">0</span>]</span><br><span class="line">      User profile <span class="keyword">is</span> available. Using <span class="string">'/Users/zhm/.aspnet/DataProtection-Keys'</span> <span class="keyword">as</span> key repository; keys will not be encrypted at rest.</span><br><span class="line">Hosting environment: Development</span><br><span class="line">Content root path: /Users/zhm/OneDrive/CodeStudy/dotnetcore/RazorPagesMovie</span><br><span class="line">Now listening <span class="keyword">on</span>: https:<span class="comment">//localhost:5001</span></span><br><span class="line">Now listening <span class="keyword">on</span>: http:<span class="comment">//localhost:5000</span></span><br><span class="line">Application started. Press Ctrl+C to shut down.</span><br></pre></td></tr></table></figure></p>
 <p>的时候，就可在浏览器里浏览项目了</p>
 <p>3、在项目目录下新建一个Models目录，并进入目录<br>  a、创建实体类文件Movie.cs，内容如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RazorPagesMovie.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Movie</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ID &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Title &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> DateTime ReleaseDate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> Genre &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">decimal</span> Price &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>b、创建数据上下文文件MovieContext.cs，内容如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RazorPagesMovie.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MovieContext</span> : <span class="title">DbContext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MovieContext</span>(<span class="params">DbContextOptions&lt;MovieContext&gt; options</span>)</span></span><br><span class="line"><span class="function">                : <span class="title">base</span>(<span class="params">options</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> DbSet&lt;Movie&gt; Movie &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>b、创建数据上下文文件MovieContext.cs，内容如下：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Microsoft.EntityFrameworkCore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RazorPagesMovie.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MovieContext</span> : <span class="title">DbContext</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MovieContext</span>(<span class="params">DbContextOptions&lt;MovieContext&gt; options</span>)</span></span><br><span class="line"><span class="function">                : <span class="title">base</span>(<span class="params">options</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> DbSet&lt;Movie&gt; Movie &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>c、打开appsetting.json文件，然后在文件中添加数据库连接字符串<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"Logging"</span>: &#123;</span><br><span class="line">    <span class="attr">"IncludeScopes"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"LogLevel"</span>: &#123;</span><br><span class="line">      <span class="attr">"Default"</span>: <span class="string">"Warning"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"ConnectionStrings"</span>: &#123;</span><br><span class="line">    <span class="attr">"MovieContext"</span>: <span class="string">"Data Source=MvcMovie.db"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>4、在Startup.cs文件中，注册数据库上下文<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// requires </span></span><br><span class="line">    <span class="comment">// using RazorPagesMovie.Models;</span></span><br><span class="line">    <span class="comment">// using Microsoft.EntityFrameworkCore;</span></span><br><span class="line"></span><br><span class="line">    services.AddDbContext&lt;MovieContext&gt;(options =&gt; </span><br><span class="line">      options.UseSqlite(Configuration.GetConnectionString(<span class="string">"MovieContext"</span>)));</span><br><span class="line">    services.AddMvc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>5、安装用于进行迁移的 Entity Framework Core NuGet 包<br>  打开 RazorPagesMovie.csproj,在里面新建一个 <itemgroup>节点，在其中添加Microsoft.EntityFrameworkCore.Tools.DotNet工具的引用<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ItemGroup&gt;</span><br><span class="line">&lt;DotNetCliToolReference Include=<span class="string">"Microsoft.VisualStudio.Web.CodeGeneration.Tools"</span> Version=<span class="string">"2.0.4"</span> /&gt;</span><br><span class="line">&lt;/ItemGroup&gt;</span><br></pre></td></tr></table></figure></itemgroup></p>
-<p>6、添加基架工具并执行初始迁移<br>  首先，运行如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dotnet add package Microsoft.AspNetCore.Razor.Language -v 2.1.0</span><br><span class="line">dotnet add package Microsoft.EntityFrameworkCore.Sqlite -v 2.1.0</span><br><span class="line">dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet --version 2.1.0-preview1-final</span><br><span class="line">dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 2.1.0</span><br></pre></td></tr></table></figure></p>
+<p>6、添加基架工具并执行初始迁移<br>  首先，运行如下命令：<br><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dotnet <span class="keyword">add</span> package Microsoft.AspNetCore.Razor.Language -v <span class="number">2.1</span><span class="number">.0</span></span><br><span class="line">dotnet <span class="keyword">add</span> package Microsoft.EntityFrameworkCore.Sqlite -v <span class="number">2.1</span><span class="number">.0</span></span><br><span class="line">dotnet <span class="keyword">add</span> package Microsoft.EntityFrameworkCore.Tools.DotNet --version <span class="number">2.1</span><span class="number">.0</span>-preview1-final</span><br><span class="line">dotnet <span class="keyword">add</span> package Microsoft.VisualStudio.Web.CodeGeneration.Design -v <span class="number">2.1</span><span class="number">.0</span></span><br></pre></td></tr></table></figure></p>
 <p>来添加package</p>
 <p>然后，运行如下命令，来进行初始迁移：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet restore</span><br><span class="line">dotnet ef migrations <span class="keyword">add</span> InitialCreate</span><br><span class="line">dotnet ef database update</span><br></pre></td></tr></table></figure></p>
 <p>最终，运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet run</span><br></pre></td></tr></table></figure></p>
@@ -495,7 +633,7 @@ dotnet core： version 2.1.300
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -615,7 +753,7 @@ dotnet core： version 2.1.300
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -736,7 +874,7 @@ dotnet core： version 2.1.300
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -859,7 +997,7 @@ dotnet core： version 2.1.300
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Zhiming">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -874,7 +1012,7 @@ dotnet core： version 2.1.300
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/25/记录一下显示Map-String-ArrayList-String-中的ArrayList里的数据的操作/" itemprop="url">记录一下显示Map<String, ArrayList<String>>中的ArrayList里的数据的操作</a></h1>
+                <a class="post-title-link" href="/2018/04/25/记录一下显示Map-String-ArrayList-String-中的ArrayList里的数据的操作/" itemprop="url">记录一下显示Map<string, arraylist<string>>中的ArrayList里的数据的操作</string,></a></h1>
         
 
         <div class="post-meta">
@@ -1014,7 +1152,7 @@ dotnet core： version 2.1.300
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1055,7 +1193,7 @@ dotnet core： version 2.1.300
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
